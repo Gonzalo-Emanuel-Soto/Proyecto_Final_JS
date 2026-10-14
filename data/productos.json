@@ -1,0 +1,14 @@
+[
+  { "id": 1, "nombre": "Espresso Intenso 1 kg", "categoria": "Café en grano", "precio": 18500, "imagen": "assets/img/espresso-intenso.svg", "descripcion": "Blend de Brasil y Colombia, tueste oscuro. Notas a cacao y caramelo." },
+  { "id": 2, "nombre": "Colombia Huila 500 g", "categoria": "Café en grano", "precio": 11200, "imagen": "assets/img/colombia-huila.svg", "descripcion": "Tueste medio y acidez dulce. Notas a panela y frutos rojos." },
+  { "id": 3, "nombre": "Brasil Santos 500 g", "categoria": "Café en grano", "precio": 9800, "imagen": "assets/img/brasil-santos.svg", "descripcion": "Cuerpo redondo y baja acidez. Notas a nuez y chocolate con leche." },
+  { "id": 4, "nombre": "Etiopía Yirgacheffe 250 g", "categoria": "Café en grano", "precio": 8900, "imagen": "assets/img/etiopia-yirgacheffe.svg", "descripcion": "Tueste claro, floral y cítrico. Ideal para métodos de filtrado." },
+  { "id": 5, "nombre": "Blend Desayuno 500 g", "categoria": "Café molido", "precio": 7600, "imagen": "assets/img/blend-desayuno.svg", "descripcion": "Molienda media para cafetera de filtro o italiana. Suave y aromático." },
+  { "id": 6, "nombre": "Descafeinado 250 g", "categoria": "Café molido", "precio": 5400, "imagen": "assets/img/descafeinado.svg", "descripcion": "Descafeinado al agua, con todo su cuerpo. Molienda media." },
+  { "id": 7, "nombre": "Cápsulas Intenso x10", "categoria": "Cápsulas", "precio": 6200, "imagen": "assets/img/capsulas-intenso.svg", "descripcion": "Compatibles con Nespresso. Crema espesa y final largo." },
+  { "id": 8, "nombre": "Cápsulas Vainilla x10", "categoria": "Cápsulas", "precio": 6500, "imagen": "assets/img/capsulas-vainilla.svg", "descripcion": "Compatibles con Nespresso. Café suave con aroma a vainilla." },
+  { "id": 9, "nombre": "Molinillo manual", "categoria": "Accesorios", "precio": 24500, "imagen": "assets/img/molinillo-manual.svg", "descripcion": "Muelas de acero con 15 niveles de molienda. Cuerpo de aluminio." },
+  { "id": 10, "nombre": "Prensa francesa 600 ml", "categoria": "Accesorios", "precio": 19800, "imagen": "assets/img/prensa-francesa.svg", "descripcion": "Vidrio borosilicato y filtro de acero inoxidable." },
+  { "id": 11, "nombre": "Taza de cerámica 250 ml", "categoria": "Accesorios", "precio": 6900, "imagen": "assets/img/taza-ceramica.svg", "descripcion": "Esmalte mate, apta para lavavajillas y microondas." },
+  { "id": 12, "nombre": "Té Earl Grey x20", "categoria": "Infusiones", "precio": 4300, "imagen": "assets/img/te-earl-grey.svg", "descripcion": "Té negro con bergamota. Saquitos individuales." }
+]

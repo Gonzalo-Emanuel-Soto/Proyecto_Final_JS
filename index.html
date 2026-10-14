@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Café Aroma | Café de especialidad recién tostado</title>
+  <link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Hanken+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="cabecera">
+    <a class="marca" href="#catalogo">
+      <img src="assets/img/logo.svg" alt="" width="36" height="36">
+      <span>Café Aroma</span>
+    </a>
+    <div class="cabecera__acciones">
+      <button id="botonUltimoPedido" class="boton boton--contorno" type="button" hidden>Último pedido</button>
+      <button id="botonCarrito" class="boton boton--claro" type="button" aria-controls="panelCarrito">
+        Carrito
+        <span id="contadorCarrito" class="contador" aria-live="polite" hidden>0</span>
+      </button>
+    </div>
+  </header>
+
+  <section class="portada">
+    <div class="contenedor">
+      <h1>Café de especialidad, recién tostado</h1>
+      <p>Granos de origen, molienda a tu gusto y todo para prepararlo en casa. Envío gratis en compras desde <strong id="umbralEnvioGratis"></strong>.</p>
+    </div>
+  </section>
+
+  <main class="contenedor" id="catalogo">
+    <div class="herramientas">
+      <div class="campo campo--ancho">
+        <label for="buscador">Buscar</label>
+        <input id="buscador" type="search" placeholder="Ej: Colombia, molinillo, té" autocomplete="off">
+      </div>
+      <div class="campo">
+        <label for="filtroCategoria">Categoría</label>
+        <select id="filtroCategoria"></select>
+      </div>
+      <div class="campo">
+        <label for="filtroOrden">Ordenar por</label>
+        <select id="filtroOrden">
+          <option value="destacados">Destacados</option>
+          <option value="precio-asc">Precio: menor a mayor</option>
+          <option value="precio-desc">Precio: mayor a menor</option>
+          <option value="nombre">Nombre</option>
+        </select>
+      </div>
+    </div>
+
+    <p id="cantidadResultados" class="cantidad-resultados" aria-live="polite"></p>
+
+    <div id="estadoCarga" class="estado estado--carga" hidden>
+      <span class="spinner" aria-hidden="true"></span>
+      <p>Cargando el catálogo...</p>
+    </div>
+
+    <div id="estadoError" class="estado estado--error" role="alert" hidden>
+      <p id="mensajeError"></p>
+      <button id="botonReintentar" class="boton boton--primario" type="button">Reintentar</button>
+    </div>
+
+    <div id="listaProductos" class="grilla"></div>
+  </main>
+
+  <footer class="pie">
+    <div class="contenedor pie__contenido">
+      <p>Café Aroma es un simulador de compra con fines educativos: no se realizan cobros reales.</p>
+      <button id="botonBorrarDatos" class="enlace" type="button">Borrar datos guardados</button>
+    </div>
+  </footer>
+
+  <div id="fondo" class="fondo" hidden></div>
+
+  <aside id="panelCarrito" class="carrito" aria-label="Carrito de compras" aria-hidden="true">
+    <div class="carrito__cabecera">
+      <h2>Tu carrito</h2>
+      <button id="botonCerrarCarrito" class="enlace" type="button">Cerrar</button>
+    </div>
+    <ul id="listaCarrito" class="lista-carrito"></ul>
+    <div class="carrito__pie">
+      <div id="resumenCarrito"></div>
+      <div class="carrito__botones">
+        <button id="botonVaciarCarrito" class="boton boton--contorno-oscuro" type="button">Vaciar</button>
+        <button id="botonFinalizarCompra" class="boton boton--primario" type="button">Finalizar compra</button>
+      </div>
+    </div>
+  </aside>
+
+  <div id="modalPedido" class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloPedido" hidden>
+    <div class="modal__contenido modal__contenido--ancho">
+      <div class="modal__cabecera">
+        <h2 id="tituloPedido">Finalizar compra</h2>
+        <button id="botonCerrarPedido" class="enlace" type="button">Cerrar</button>
+      </div>
+      <div class="checkout">
+        <form id="formularioPedido" class="formulario">
+          <div class="campo">
+            <label for="campoNombre">Nombre y apellido</label>
+            <input id="campoNombre" name="nombre" type="text" minlength="3" required autocomplete="name">
+          </div>
+          <div class="campo">
+            <label for="campoEmail">Email</label>
+            <input id="campoEmail" name="email" type="email" required autocomplete="email">
+          </div>
+          <div class="campo">
+            <label for="campoTelefono">Teléfono (opcional)</label>
+            <input id="campoTelefono" name="telefono" type="tel" autocomplete="tel">
+          </div>
+          <div class="campo">
+            <label for="campoDireccion">Dirección de entrega</label>
+            <input id="campoDireccion" name="direccion" type="text" minlength="5" required autocomplete="street-address">
+          </div>
+          <div class="campo">
+            <label for="campoPago">Método de pago</label>
+            <select id="campoPago" name="metodoPago" required>
+              <option value="Tarjeta">Tarjeta</option>
+              <option value="Transferencia">Transferencia</option>
+              <option value="Efectivo">Efectivo al recibir</option>
+            </select>
+          </div>
+          <button class="boton boton--primario boton--completo" type="submit">Confirmar pedido</button>
+        </form>
+        <div id="resumenPedido" class="checkout__resumen"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="modalComprobante" class="modal" role="dialog" aria-modal="true" aria-labelledby="tituloComprobante" hidden>
+    <div class="modal__contenido">
+      <div id="contenidoComprobante"></div>
+      <button id="botonCerrarComprobante" class="boton boton--primario boton--completo" type="button">Seguir comprando</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
